@@ -33,7 +33,7 @@ class BaiduSummary(object):
         return res
 
 
-class Top(object):
+class Spider(object):
     def __init__(self, banner,date):
         self.banner = banner
         self.titles = []
@@ -264,18 +264,19 @@ class Top(object):
 
 if __name__ == '__main__':
     # 登录
-    username = '18801313989'  # 微博账号
-    password = '11111111aaaaa'  # 微博密码
+    username = 'xxx'  # 微博账号
+    password = 'xxx'  # 微博密码
     weibo = LoginWeibo(username, password)
     weibo.login()
 
     # 爬取热搜
-    realtimehot = Top('resou',sys.argv[1])  # 日期当参数传入
+    realtimehot = Spider('resou', sys.argv[1])  # 日期当参数传入
     realtimehot.session=weibo.session
     realtimehot.get_top("http://s.weibo.com/top/summary?cate=realtimehot")
     realtimehot.out_put()
 
-    realtimehot = Top('yaowen', sys.argv[1])  # 日期当参数传入
+    # 爬取要闻
+    realtimehot = Spider('yaowen', sys.argv[1])  # 日期当参数传入
     realtimehot.session = weibo.session
     realtimehot.get_top("http://s.weibo.com/top/summary?cate=socialevent")
     realtimehot.out_put()
